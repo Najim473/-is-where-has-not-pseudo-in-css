@@ -1,0 +1,50 @@
+/*
+Specificity
+!   id    class   tag
+0   0     0       1
+*/
+* {
+  font-family: sans-serif;
+}
+html {
+  font-size: 20px;
+}
+header {
+  color: gold; /* 0.0.0.1 */
+}
+header:is(.masthead, .blah, .hello) {
+  color: fuchsia; /* 0.0.1.1 */
+}
+header :is(h1, h2) {
+  color: orangered; /* 0.0.0.2 */
+}
+/* header h2,
+main h2 {
+  color: #bada55;
+} */
+:is(header, main) h2 {
+  /* color: #bada55; 0.0.0.2 */
+}
+:where(header, main) h2 {
+  color: rebeccapurple; /* 0.0.0.1 */
+}
+
+p:has(span) {
+  /* applies to p */
+  font-size: 2rem;
+}
+p:has(> img) {
+  /* not with <p><span><img> */
+  border-left: 1rem solid red;
+}
+p:has(+ p) {
+  border-bottom: 2px solid cornflowerblue;
+  /* li:has(+li) */
+}
+p:not(:has(span)) {
+  color: cornflowerblue;
+  font-size: 1.5rem;
+}
+form:has(:invalid, :indeterminate, :out-of-range, :placeholder-shown) {
+  /* 0,0,1,1 */
+}
